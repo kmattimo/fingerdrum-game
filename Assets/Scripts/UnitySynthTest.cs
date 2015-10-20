@@ -21,7 +21,7 @@ public class UnitySynthTest : MonoBehaviour
 	//Private 
 	private float[] sampleBuffer;
 	private float gain = 1f;
-	private MidiSequencer midiSequencer;
+	public MidiSequencer midiSequencer;
 	private StreamSynthesizer midiStreamSynthesizer;
 	
 	private float sliderValue = 1.0f;
@@ -55,7 +55,13 @@ public class UnitySynthTest : MonoBehaviour
 	// MonoBehaviour is enabled.
 	void Update ()
 	{
-		//Demo of direct note output
+        if (kyle.S.gameStarted && !midiSequencer.isPlaying)
+        {
+            kyle.S.newLoopStart();
+            midiSequencer.Play();
+        }
+
+        //Demo of direct note output
         if (Input.GetKeyDown(KeyCode.A))
             midiStreamSynthesizer.NoteOn (1, midiNote, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.A))
@@ -109,6 +115,7 @@ public class UnitySynthTest : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.K))
             midiStreamSynthesizer.NoteOff (1, midiNote + 12);		
 		
+
 		
 	}
 	
@@ -121,14 +128,19 @@ public class UnitySynthTest : MonoBehaviour
 		
 		
 		if (GUILayout.Button ("Play Song")) {
-			midiSequencer.Play ();
+            //midiSequencer.Play ();
+            kyle.S.gameStarted = true;
 		}
 		if (GUILayout.Button ("Stop Song")) {
+            kyle.S.gameStarted = false;
 			midiSequencer.Stop (true);
 		}		
 		GUILayout.Label("Play keys AWSEDFTGYHJK");
-		
-		GUILayout.Box("Instrument: " + Mathf.Round(midiInstrument));
+        GUILayout.Label("Missed Notes: " + kyle.S.missedNotes + " Hit Notes " + kyle.S.hitNotes);
+        GUILayout.Label("Extra Notes: " + kyle.S.extraNotes);
+        GUILayout.Label("Loops: " + kyle.S.loopCount);
+
+        GUILayout.Box("Instrument: " + Mathf.Round(midiInstrument));
 		midiInstrument = (int)GUILayout.HorizontalSlider (midiInstrument, 0.0f, maxSliderValue);
 		GUILayout.Box("Volume: " + Mathf.Round(midiNoteVolume));
 		midiNoteVolume = (int)GUILayout.HorizontalSlider (midiNoteVolume, 0.0f, maxSliderValue);

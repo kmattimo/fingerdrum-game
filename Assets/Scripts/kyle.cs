@@ -7,7 +7,13 @@ public class kyle : MonoBehaviour {
     public static kyle S;
     // Use this for initialization
     public Dictionary<int, DateTime> validNotes;
-    public static float keypressWindow = 2f;
+    public static double keypressWindow = .3f;
+    public bool gameStarted = false;
+
+    public int missedNotes = 0;
+    public int hitNotes = 0;
+    public int extraNotes = 0;
+    public int loopCount = 0;
 
     void Awake()
     {
@@ -19,12 +25,14 @@ public class kyle : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
+
         List<int> notes = new List<int>(validNotes.Keys);
         foreach(int note in notes)
         {
             if (validNotes[note] < DateTime.Now)
             {
                 Debug.Log("note " + note + " removed");
+                missedNotes++;
                 removeNote(note);
             }
         }
@@ -37,11 +45,22 @@ public class kyle : MonoBehaviour {
                 if(Input.GetKeyDown(entry.Key) && validNotes.ContainsKey(GameLogic.KeyToNote[entry.Key] ))
                 {
                     print("MATCHING KEY " + entry.Value);
+                    hitNotes++;
                     playNote(entry.Key);
+                }
+                else if(Input.GetKeyDown(entry.Key))
+                {
+                    print("lol fat fingers");
+                    extraNotes++;
                 }
             }
         }
 
+    }
+
+    public void newLoopStart()
+    {
+        kyle.S.loopCount++;
     }
 
     public void getNote(int note)
@@ -49,13 +68,15 @@ public class kyle : MonoBehaviour {
         if(validNotes.ContainsKey(note))
         {
             print("note missed, dupe");
+            missedNotes++;
+            removeNote(note);
         }
-        validNotes[note] = DateTime.Now.AddSeconds(1);
+        validNotes[note] = DateTime.Now.AddSeconds(keypressWindow);
     }
 
     public void playNote(KeyCode key)
     {
-        removeNote(GameLogic.KeyToNote[key]);
+        removeNote((int)key);
     }
 
     public void removeNote(int note)
