@@ -30,6 +30,14 @@ pitch_keycenter=95
 volume=-18.100
 
 <region>
+sample=snare.wav
+lokey=107
+hikey=107
+tune=-50
+pitch_keycenter=66
+volume=-18.100
+
+<region>
 sample=BIRD_60.wav
 lokey=78
 hikey=78

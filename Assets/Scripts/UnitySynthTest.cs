@@ -15,6 +15,7 @@ public class UnitySynthTest : MonoBehaviour
 	//Try also: "FM Bank/fm" or "Analog Bank/analog" for some different sounds
 	public string bankFilePath = "GM Bank/gm";
 	//public int bufferSize = 1024;
+    //change in unity editor doesn't do shit
     public int bufferSize = 128;
     
     public int midiNote = 60;
@@ -117,18 +118,24 @@ public class UnitySynthTest : MonoBehaviour
             midiStreamSynthesizer.NoteOn (1, midiNote + 8, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.Y))
             midiStreamSynthesizer.NoteOff (1, midiNote + 8);
+
         if (Input.GetKeyDown(KeyCode.H))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 9, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (1, (int)KeyCode.H, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.H))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 9);
+            midiStreamSynthesizer.NoteOff (1, (int)KeyCode.H);
+
+
         if (Input.GetKeyDown(KeyCode.U))
             midiStreamSynthesizer.NoteOn (1, midiNote + 10, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.U))
             midiStreamSynthesizer.NoteOff (1, midiNote + 10);
+
         if (Input.GetKeyDown(KeyCode.J))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 11, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (1, (int)KeyCode.J, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.J))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 11);		
+            midiStreamSynthesizer.NoteOff (1, (int)KeyCode.J);		
+
+
         if (Input.GetKeyDown(KeyCode.K))
             midiStreamSynthesizer.NoteOn (1, midiNote + 12, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.K))
