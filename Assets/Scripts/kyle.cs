@@ -5,15 +5,26 @@ using System;
 
 public class kyle : MonoBehaviour {
     public static kyle S;
-    // Use this for initialization
+
+    //notes that can be 'played' this instant
     public Dictionary<int, DateTime> validNotes;
+
+    //store notes for a bit if they are anticipated
+    public Dictionary<int, DateTime> playedNotes;
+
+    //counts of each note per loop, for scoring, etc
+    public Dictionary<int, int> loopNotes; 
+
     public static double keypressWindow = .3f;
+    public static double keypressPreWindow = .3f;
+
     public bool gameStarted = false;
 
     public int missedNotes = 0;
     public int hitNotes = 0;
     public int extraNotes = 0;
     public int loopCount = 0;
+    public int totalNotes = 0;
 
     void Awake()
     {
@@ -22,12 +33,36 @@ public class kyle : MonoBehaviour {
 
 	void Start () {
         validNotes = new Dictionary<int, DateTime>();
-	}
-	
-	void FixedUpdate () {
+        playedNotes = new Dictionary<int, DateTime>();
+
+
+    }
+
+    void FixedUpdate () {
 
         List<int> notes = new List<int>(validNotes.Keys);
-        foreach(int note in notes)
+
+
+        if(Input.anyKeyDown)
+        {
+            //how to avoid massive manual headache for which qwerty key
+            foreach (int note in notes)
+            {
+                if(Input.GetKeyDown( (KeyCode)note) )
+                {
+                    print("MATCHING KEY " + note);
+                    hitNotes++;
+                    playNote((KeyCode)note);
+                }
+                else 
+                {
+                    print("lol fat fingers");
+                    extraNotes++;
+                }
+            }
+        }
+        notes = new List<int>(validNotes.Keys);
+        foreach (int note in notes)
         {
             if (validNotes[note] < DateTime.Now)
             {
@@ -37,30 +72,16 @@ public class kyle : MonoBehaviour {
             }
         }
 
-        if(Input.anyKeyDown)
-        {
-            //how to avoid massive manual headache for which qwerty key
-            foreach (KeyValuePair<KeyCode, int> entry in GameLogic.KeyToNote)
-            {
-                if(Input.GetKeyDown(entry.Key) && validNotes.ContainsKey(GameLogic.KeyToNote[entry.Key] ))
-                {
-                    print("MATCHING KEY " + entry.Value);
-                    hitNotes++;
-                    playNote(entry.Key);
-                }
-                else if(Input.GetKeyDown(entry.Key))
-                {
-                    print("lol fat fingers");
-                    extraNotes++;
-                }
-            }
-        }
-
     }
 
     public void newLoopStart()
     {
-        kyle.S.loopCount++;
+        missedNotes = 0;
+        hitNotes = 0;
+        extraNotes = 0;
+        validNotes = new Dictionary<int, DateTime>();
+       //modify played notes here? 
+        loopCount++;
     }
 
     public void getNote(int note)

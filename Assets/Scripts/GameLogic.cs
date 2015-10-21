@@ -4,21 +4,16 @@ using System.Collections.Generic;
 
 public class GameLogic : MonoBehaviour {
 
+    //public static Dictionary<KeyCode, int> KeyToNote;
 
-    //public static List<KeyCode> musicKeys;
-
-    public static Dictionary<KeyCode, int> KeyToNote;
-
-
-	// Use this for initialization
-	void Awake () {
+    void Awake () {
         //musicKeys = new List<KeyCode>();
-        KeyToNote = new Dictionary<KeyCode, int>();
+        //KeyToNote = new Dictionary<KeyCode, int>();
 
         //musicKeys.Add(KeyCode.J);
         //musicKeys.Add(KeyCode.K);
 
-        KeyToNote.Add(KeyCode.J, 36);
+        //KeyToNote.Add(KeyCode.J, 36);
     
 	}
 	

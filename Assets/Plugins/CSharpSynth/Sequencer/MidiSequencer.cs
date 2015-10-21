@@ -26,6 +26,11 @@ namespace CSharpSynth.Sequencer
         public delegate void NoteOffEventHandler(int channel, int note);
         public event NoteOffEventHandler NoteOffEvent;
         //--Public Properties
+        public MidiFile getMidiFile
+        {
+            get { return _MidiFile; }
+        }
+
         public bool isPlaying
         {
             get { return playing; }

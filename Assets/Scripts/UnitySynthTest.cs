@@ -14,8 +14,10 @@ public class UnitySynthTest : MonoBehaviour
 	public string midiFilePath = "Midis/Groove.mid";
 	//Try also: "FM Bank/fm" or "Analog Bank/analog" for some different sounds
 	public string bankFilePath = "GM Bank/gm";
-	public int bufferSize = 1024;
-	public int midiNote = 60;
+	//public int bufferSize = 1024;
+    public int bufferSize = 128;
+    
+    public int midiNote = 60;
 	public int midiNoteVolume = 100;
 	public int midiInstrument = 1;
 	//Private 
@@ -48,7 +50,22 @@ public class UnitySynthTest : MonoBehaviour
 	// Update methods is called the first time.
 	void Start ()
 	{
-		
+         //List<MidiEvent> getAllMidiEventsofType(byte channel, MidiHelper.MidiChannelEvent eventChannelType, MidiHelper.MidiMetaEvent eventMetaType)
+         MidiFile midi = midiSequencer.getMidiFile;
+        List<MidiEvent> noteOns = midi.getAllMidiEventsofType( MidiHelper.MidiChannelEvent.Note_On, MidiHelper.MidiMetaEvent.None);
+
+        //this is pretty bad OOP practice already tbh
+        kyle.S.loopNotes = new Dictionary<int, int>();
+        kyle.S.totalNotes = noteOns.Count;
+        foreach(MidiEvent midiEvent in noteOns)
+        {
+            Debug.Assert(midiEvent.parameter1 > 0);
+            if(! kyle.S.loopNotes.ContainsKey(midiEvent.parameter1))
+            {
+                kyle.S.loopNotes[midiEvent.parameter1] = 0;
+            }
+            kyle.S.loopNotes[midiEvent.parameter1]++;
+        }
 	}
 	
 	// Update is called every frame, if the
@@ -136,7 +153,8 @@ public class UnitySynthTest : MonoBehaviour
 			midiSequencer.Stop (true);
 		}		
 		GUILayout.Label("Play keys AWSEDFTGYHJK");
-        GUILayout.Label("Missed Notes: " + kyle.S.missedNotes + " Hit Notes " + kyle.S.hitNotes);
+        GUILayout.Label("Missed Notes: " + kyle.S.missedNotes);
+        GUILayout.Label(" Hit Notes " + kyle.S.hitNotes);
         GUILayout.Label("Extra Notes: " + kyle.S.extraNotes);
         GUILayout.Label("Loops: " + kyle.S.loopCount);
 
