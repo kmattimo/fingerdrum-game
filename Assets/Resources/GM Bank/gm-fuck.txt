@@ -1,0 +1,3 @@
+[BankFile]
+Piano1/sfz/0/55/i/
+SFX/sfz/56/127/d/

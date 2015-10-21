@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>sfZed - sfz format editor</title>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+<font face="Helvetica, Arial, sans-serif"></font>
+
+<h1 align="center"><font face="Helvetica, Arial, sans-serif"><font
+color="#cc33cc">sfZed</font><br>
+</font></h1>
+<font face="Helvetica, Arial, sans-serif"></font>
+
+<h3 align="center"><font face="Helvetica, Arial, sans-serif">help</font></h3>
+<font face="Helvetica, Arial, sans-serif"></font>
+
+<h3><font face="Helvetica, Arial, sans-serif">What is sfZed?</font></h3>
+<font face="Helvetica, Arial, sans-serif">sfZed is an editor for the sfz
+format for the sfz sample player created by rgc:audio and for CakeWalk
+Dimension. The format uses stand   alone samples as wave or ogg files, plus a
+file defining how those samples  should be used.  The sfz format is a text
+format and can be edited with  a text editor. The role of sfZed is to make
+that task easier by organising  the information, providing graphical visual
+feedback and audio auditioning.  Since it is desirable to be able to convert
+equivalent formats, conversion  is also included.</font>
+
+<p><font face="Helvetica, Arial, sans-serif" color="#993300">Recent changes
+are marked </font></p>
+
+<h3><font face="Helvetica, Arial, sans-serif">Settings</font></h3>
+<font face="Helvetica, Arial, sans-serif">When sfZed starts it will prompt
+you for some settings. These are:<br>
+<br>
+</font>
+<ul>
+  <li><font face="Helvetica, Arial, sans-serif">     MIDI In - choose a
+    suitable input MIDI device. If there are none or you choose  to have
+    none, leave it blank. You can use the built in keyboard.<br>
+    <br>
+    </font></li>
+  <li><font face="Helvetica, Arial, sans-serif">     Audio - choose a
+    suitable output audio device. If there is none or you choose   to have
+    none, you must select "No sfz auditioning" below.<br>
+    <br>
+    </font></li>
+  <li><font face="Helvetica, Arial, sans-serif">     Sfz dll file - Choose
+    the path to your sfz VST dll. If you don't have one, download it from
+    www.rgcaudio.com. Again,  otherwise you must select "No sfz auditioning"
+    below.<br>
+    <br>
+    </font></li>
+  <li><font face="Helvetica, Arial, sans-serif">     No sfz auditioning -
+    check this box to have no sfz auditioning. You may wish  to do this if
+    you have problems with auditioning.</font></li>
+</ul>
+<font face="Helvetica, Arial, sans-serif">Also you can choose whether to save
+&lt;group&gt; values with regions. By default this will be set to "One group
+only" which means that any values which are the same thoughout all regions
+wll appear in a &lt;group&gt; tag at the top of the file. If "Multiple
+groups" chosen sfZed will detect which opcodes are suitable for grouping
+using the current sort order and create groups where appropriate</font>. <br>
+
+
+<h3><font face="Helvetica, Arial, sans-serif">Creating a new
+instrument</font></h3>
+<font face="Helvetica, Arial, sans-serif">When you first open sfZed it has
+created the basis for a new instrument. It creates one region which is mapped
+ right across the keyboard, but has no samples associated with it. In place
+of the sample is an "Add" button. By clicking that, or choosing "Add samples"
+ from the "File" menu, one or more samples can be added. In fact sfZed simply
+ creates a reference to the location of each sample.  In place of the  "Add"
+button, there will now be a dropdown selection of all of the available
+samples. At the time the samples are added, you will be prompted to add
+regions.  This creates one region for each sample, and, as far as it can tell
+from the name, sets the lokey, hikey and pitch_keycenter (see Working with
+Templates below). It then opens the region toolbox and offers to spread the
+samples across available keys and set the velocity range if you wish. <br>
+<br>
+To create a new region choose "New region" from the "Edit" menu.<br>
+</font>
+
+<h3></h3>
+
+<h3><font face="Helvetica, Arial, sans-serif">Working with
+Templates</font></h3>
+<font face="Helvetica, Arial, sans-serif">The values associated with a region
+can be saved for use in other editing sessions. This can be most useful when
+mapping drums which need special setting for each part of the kit. A template
+is created by right clicking on a region and choosing Template&gt;Set. Enter
+the template keyword and click Add/Update. All of the values in the selected
+region are now saved against that keyword. The keyword becomes a menu option
+under Template and selecting it will apply  the values to a region.<br>
+</font><br>
+<font face="Helvetica, Arial, sans-serif">Also, when samples are loaded, the
+template keywords are compared with the sample name, and if one matches any
+part of the name the template will be automatically  applied. In this
+respect, note names and numbers are also treated as keywords  and if there is
+more than one match, the longest match will take priority,  and where lengths
+are equal templates take priority.</font><br>
+<br>
+<font face="Helvetica, Arial, sans-serif">For example  a template with a
+keyword of "kick" will automatically assign the required  opcode values to a
+sample called "kick23.wav", or be applied with one mouse  click if it isn't.
+ If you dont want a keyword to ever be matched to  a sample name put a "*" or
+"?"  in the name.<br>
+<br>
+When you create your first template a file called "sfztemplates.sfz" is
+created in the directory where sfZed.exe is loaded. It can be loaded into
+sfZed like any other file, edited and saved.<br>
+<br>
+No templates are provided by default, but I will host templates on this web
+site if anyone wants to share them.</font>
+
+<h3><font face="Helvetica, Arial, sans-serif">Selection</font></h3>
+<font face="Helvetica, Arial, sans-serif">Individual cells can be selected
+just by clicking on them once. They can be copied, pasted etc. By clicking on
+the far left margin, whole regions can be selected. They can be copied and
+pasted also. If regions are copied, and then pasted into a text document,
+proper sfz format regions will be produced. Similarly if one or more regions
+is copied from a text document (including the &lt;region&gt; tag) they can
+be successfully pasted into sfZed. To select all regions, click the empty
+top left cell of the Region tab.<br>
+<br>
+When pasting in individual cells, the selection position moves down by one.
+This means that by repeated pasting, a number of cells can be quickly filled
+with the same value. To make all of the cells in an opcode have the  same
+value, right click on a cell with the value required, and choose "Apply  to
+all".<br>
+</font>
+
+<h3><font face="Helvetica, Arial, sans-serif">Auditioning</font></h3>
+<font face="Helvetica, Arial, sans-serif">Auditioning will not be available
+until you have saved a new instrument for the first time as an sfz format
+file (or saved a converted Soundfont). Once you have done so it will be
+available automatically, and the sound will be produced through sfz, giving
+an accurate reflection of the end result. As you play notes, the region being
+used will be highlighted in green on the left. This is an indication of the
+regions, not always an accurate reflection of what sfz is using. Not all
+aspects of  sfz are modeled, and some (eg random regions) could not be
+predicted by sfZed.<br>
+<br>
+When you make changes, the notes are highlighted in red. This means what you
+are hearing is the copy before the changes were made. To hear the changes,
+either save the file, or click the "Preview" button, which will have turned
+red. Preview creates a temporary file, without changing the original.<br>
+<br>
+The "Sfz" tab shows the sfz VST. Here you can choose the quality settings.
+Loading a different file here will do no harm, but will not be understood by
+the editor.<br>
+<br>
+On the toolbar there is also a volume slider, and a keyboard button which
+opens a keyb</font><font face="Helvetica, Arial, sans-serif">oard window
+which can be resized,  as an alt</font><font
+face="Helvetica, Arial, sans-serif">ernative to MIDI input. An advantage of
+this is that a range of velocities are available which may be difficult to
+reproduce on a MIDI keyboard.<br>
+<br>
+</font><font face="Helvetica, Arial, sans-serif">Also the following keys will
+play the currently selected  region:<br>
+<br>
+F5 - lowest key, highest velocity<br>
+F6 - highest key, highest velocity<br>
+F7 - middle key, lowest velocity (1 if low velocity is 0 - though still
+probably inaudible)<br>
+F8 - middle key, highest velocity</font><font
+face="Helvetica, Arial, sans-serif"><br>
+</font>
+
+<h3><font face="Helvetica, Arial, sans-serif">Setting values</font></h3>
+
+<p><font face="Helvetica, Arial, sans-serif">The sfz format defines a lot of
+"Opcodes" which define how the samples should be played back. See the sfz
+format definition at www.rgcaudio.com for details. By creating many regions,
+different samples and settings can be used based on the note played, and
+perhaps, say, its velocity. The remaining settings affect the way the sound
+is played back. All of these (about 200 possible opcodes) are available from
+the "Opcodes" menu and become new columns in the layout. By hovering your
+mouse over a column, or right-clicking and choosing "Help" more information
+about the opcode is available. But you should use the formal sfz format
+definition  in case of doubt.<br>
+<br>
+Values can be set depending on their type. Numeric values can mostly be  set
+using a slider. But if there is no upper or lower limit this is not
+available.  Choices appear as a dropdown. But any cell can be modified just
+by typing  the value required.</p>
+
+<p><span style="color: #993300; background-color: #FFFFFF">Cell values which
+are notes can also be set by holding down Ctrl and playing them on the MIDI
+keyboard. Where notes are high/low pairs, both can be set at the same time by
+playing both notes.</span><br>
+<br>
+When a value has the defined default for that opcode it is coloured grey and
+it will be omitted from the saved file. Values in red are invalid for that
+opcode type (but will still be saved if you save the file).<br>
+<br>
+Comments at the top of the sfz file can be modified via the Comments tab.
+Comments within the file cannot be modified, but are retained a far as
+possible. <font color="#993300"><span style="color: #000000">Two special
+comments are available</span><br style="color: #000000">
+<br style="color: #000000">
+<span
+style="color: #000000">//@sample_url=www.someplace.com/mysamples.html</span><br
+style="color: #000000">
+<br style="color: #000000">
+<span style="color: #000000">which will pop up if the file is loaded and any
+samples are missing, and will open the page if the URL is clicked.  This
+allows the sfz file to be disributed without samples or directed to samples
+not owned by the author.</span><br style="color: #000000">
+<br style="color: #000000">
+</font></font><font face="Helvetica, Arial, sans-serif" color="#993300"
+style="color: #000000">//@author_url=www.someplace.com/about.html<br>
+<br>
+which will appear as an option under the help menu. Again it will open the
+page if requested.</font><br style="color: #000000">
+</p>
+
+<h3><font face="Helvetica, Arial, sans-serif">Soundfont Conversion</font></h3>
+<font face="Helvetica, Arial, sans-serif">The most 'open' format prior to
+sfz is the Creative Soundfont, and it is supported by all converters. So
+sfZed includes the ability to convert Soundfonts.<br>
+<br>
+Converting Soundfonts does not achieve anything useful in itself. If you
+plan to use them unaltered, leave them as Soundfonts. Conversion is there
+for cases where you want to apply changes. Also remember that if you plan
+to share your results, Soundfonts (and samples for that matter) may be
+protected   by copyright.<br>
+<br>
+To convert a Soundfont, choose "Import Soundfont". If it contains more than
+one instrument you will be asked which you wish to convert. Only one can be
+converted at a time. The sfz format created from a Soundfont cannot be
+auditioned until it, and the samples have been saved. The opcodes in sfz  do
+not exactly match the options available in a Soundfont, so the result may not
+exactly match.<br>
+<br>
+Where possible, sfZed will create a stereo sample where the Soundfont uses
+stereo, even if that means some loss of parameters as a result. It can only
+do so, however, if the samples are alike in all respects, including loop
+points. Otherwise it will create two mono samples and pan them as in the
+Soundfont - but the results in sfz will not be so good as a stereo
+sample.</font>
+
+<h3><font face="Helvetica, Arial, sans-serif">Keyboard Shortcuts</font></h3>
+<font face="Helvetica, Arial, sans-serif">Ctrl-A     Select All<br>
+Ctrl-C    Copy<br>
+Ctrl-N     New<br>
+Ctrl-O    Open<br>
+Ctrl-V    Paste<br>
+Ctrl-X    Cut<br>
+Ctrl-Y    Redo<br>
+Ctrl-Z    Undo<br>
+<br>
+Shift-Del    Cut<br>
+Ctrl-Insert    Copy<br>
+Shift-Insert    Paste<br>
+Del    Delete<br>
+<br>
+Ctrl-PgDown    Increment<br>
+Ctrl-PgUp    Decrement<br>
+Ctrl/Shift-PgDown    Coarse Increment<br>
+Ctrl/Shift-PgUp        Coarse Decrement<br>
+<br>
+Ctrl-Tab    Change page tab<br>
+<br>
+F1    Help<br>
+F5    Play region - lowest key, highest velocity<br>
+F6    Play region - highest key, highest velocity<br>
+F7    Play region - middle key, lowest velocity<br>
+F8    Play region - middle key, highest velocity</font><font
+color="#993300"><br>
+</font><br>
+<font face="Helvetica, Arial, sans-serif">  <br>
+<br>
+<i>Copyright © 2004-2005 Steve Holt. All rights reserved.</i><br>
+</font><font face="Helvetica, Arial, sans-serif"><font
+face="Helvetica, Arial, sans-serif"><font
+face="Helvetica, Arial, sans-serif"><font
+face="Helvetica, Arial, sans-serif"><br>
+</font>  <br>
+</font> </font><br>
+</font>  <br>
+<br>
+<br>
+<br>
+</body>
+</html>

@@ -135,4 +135,4 @@ TR-808/sfz/25/31/d/
 Jazz/sfz/32/39/d/
 Brush/sfz/40/47/d/
 Orchestra/sfz/48/55/d/
-test2/sfz/56/127/d/
+SFX/sfz/56/127/d/

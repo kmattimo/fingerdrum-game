@@ -1,0 +1,8 @@
+
+<region>
+sample=kick.wav
+hikey=c5
+
+<region>
+sample=snare.wav
+lokey=c6

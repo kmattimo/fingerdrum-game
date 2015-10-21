@@ -66,11 +66,13 @@ public class UnitySynthTest : MonoBehaviour
             }
             kyle.S.loopNotes[midiEvent.parameter1]++;
         }
-	}
-	
-	// Update is called every frame, if the
-	// MonoBehaviour is enabled.
-	void Update ()
+        kyle.S.allNotesInLoop = new List<int>(kyle.S.loopNotes.Keys);
+
+    }
+
+    // Update is called every frame, if the
+    // MonoBehaviour is enabled.
+    void Update ()
 	{
         if (kyle.S.gameStarted && !midiSequencer.isPlaying)
         {
@@ -167,7 +169,9 @@ public class UnitySynthTest : MonoBehaviour
 		
         Event e = Event.current;
         if (e.isKey)
-            Debug.Log("Detected key code: " + e.keyCode);		
+        {
+            //Debug.Log("Detected key code: " + e.keyCode);		
+        }
 	}
 	
 	// This function is called when the object

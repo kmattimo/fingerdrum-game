@@ -13,7 +13,9 @@ public class kyle : MonoBehaviour {
     public Dictionary<int, DateTime> playedNotes;
 
     //counts of each note per loop, for scoring, etc
-    public Dictionary<int, int> loopNotes; 
+    //initialized in unitysynthtest >:|
+    public Dictionary<int, int> loopNotes;
+    public List<int> allNotesInLoop;
 
     public static double keypressWindow = .3f;
     public static double keypressPreWindow = .3f;
@@ -35,29 +37,44 @@ public class kyle : MonoBehaviour {
         validNotes = new Dictionary<int, DateTime>();
         playedNotes = new Dictionary<int, DateTime>();
 
-
     }
 
     void FixedUpdate () {
 
         List<int> notes = new List<int>(validNotes.Keys);
 
-
         if(Input.anyKeyDown)
         {
-            //how to avoid massive manual headache for which qwerty key
+            foreach (int note in allNotesInLoop)
+            {
+                if (Input.GetKeyDown((KeyCode)note))
+                {
+                    if(playedNotes.ContainsKey(note) )
+                    {
+                        extraNotes++;
+                    }
+                    playedNotes[note] = DateTime.Now.AddSeconds(keypressPreWindow);
+                }
+            }
+
+            //avoiding massive manual headache for which qwerty key
             foreach (int note in notes)
             {
                 if(Input.GetKeyDown( (KeyCode)note) )
                 {
                     print("MATCHING KEY " + note);
                     hitNotes++;
-                    playNote((KeyCode)note);
+                    if(playedNotes.ContainsKey(note))
+                    {
+                        playedNotes.Remove(note);
+                    }
+                    validNotes.Remove(note);
                 }
                 else 
                 {
-                    print("lol fat fingers");
-                    extraNotes++;
+                    //never hits here?
+                   // print("lol fat fingers");
+                    //extraNotes++;
                 }
             }
         }
@@ -68,7 +85,17 @@ public class kyle : MonoBehaviour {
             {
                 Debug.Log("note " + note + " removed");
                 missedNotes++;
-                removeNote(note);
+                validNotes.Remove(note);
+            }
+        }
+        List<int> playedNoteNumbers = new List<int>(playedNotes.Keys);
+        foreach (int note in playedNoteNumbers)
+        {
+            if (playedNotes[note] < DateTime.Now)
+            {
+                Debug.Log("Played Note " + note + " Expired");
+                playedNotes.Remove(note);
+                extraNotes++;            
             }
         }
 
@@ -86,23 +113,22 @@ public class kyle : MonoBehaviour {
 
     public void getNote(int note)
     {
+        if(playedNotes.ContainsKey(note) )
+        {
+            print("DEEZ NUTS GOT EM BITCH");
+            playedNotes.Remove(note);
+            hitNotes++;
+            return;
+        }
+
         if(validNotes.ContainsKey(note))
         {
             print("note missed, dupe");
             missedNotes++;
-            removeNote(note);
+            validNotes.Remove(note);
         }
         validNotes[note] = DateTime.Now.AddSeconds(keypressWindow);
     }
 
-    public void playNote(KeyCode key)
-    {
-        removeNote((int)key);
-    }
-
-    public void removeNote(int note)
-    {
-        validNotes.Remove(note);
-    }
-
+  
 }
