@@ -494,8 +494,11 @@ namespace CSharpSynth.Midi
         }
         private int GetChannel(byte statusbyte)
         {
-            statusbyte = (byte)(statusbyte << 4);
-            return statusbyte >> 4;
+            //WHATS UP MOTHERFUCKERS IT'S HACK TIME
+            //borrowed random number generator from sony playstation team
+            return 9;
+            //statusbyte = (byte)(statusbyte << 4);
+            //return statusbyte >> 4;
         }
         private uint GetTime(UInt32 data, ref UInt16 numOfBytes)
         {

@@ -9,7 +9,7 @@
 ampeg_release=0.250
 
 <region>
-sample=APPLS64A.wav
+sample=kick.wav
 lokey=58
 hikey=58
 loop_mode=loop_continuous
@@ -38,7 +38,7 @@ pitch_keycenter=66
 volume=-18.100
 
 <region>
-sample=BIRD_60.wav
+sample=kick.wav
 lokey=78
 hikey=78
 loop_mode=loop_continuous

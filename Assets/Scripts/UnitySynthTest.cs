@@ -40,9 +40,13 @@ public class UnitySynthTest : MonoBehaviour
 		midiStreamSynthesizer.LoadBank (bankFilePath);
 		
 		midiSequencer = new MidiSequencer (midiStreamSynthesizer);
+
+        //IT WAS YOU ALL ALONG. YOU BOOLEAN!!!!
 		midiSequencer.LoadMidi (midiFilePath, false);
-		//These will be fired by the midiSequencer when a song plays. Check the console for messages
-		midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler (MidiNoteOnHandler);
+       // midiSequencer.LoadMidi(midiFilePath, true);
+
+        //These will be fired by the midiSequencer when a song plays. Check the console for messages
+        midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler (MidiNoteOnHandler);
 		midiSequencer.NoteOffEvent += new MidiSequencer.NoteOffEventHandler (MidiNoteOffHandler);	
 		
 	}
@@ -83,63 +87,68 @@ public class UnitySynthTest : MonoBehaviour
 
         //Demo of direct note output
         if (Input.GetKeyDown(KeyCode.A))
-            midiStreamSynthesizer.NoteOn (1, midiNote, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, (int)KeyCode.A, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.A))
-            midiStreamSynthesizer.NoteOff (1, midiNote);
+            midiStreamSynthesizer.NoteOff (9, (int)KeyCode.A);
         if (Input.GetKeyDown(KeyCode.W))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 1, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 1, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.W))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 1);
+            midiStreamSynthesizer.NoteOff (9, midiNote + 1);
         if (Input.GetKeyDown(KeyCode.S))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 2, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 2, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.S))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 2);		
+            midiStreamSynthesizer.NoteOff (9, midiNote + 2);		
         if (Input.GetKeyDown(KeyCode.E))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 3, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 3, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.E))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 3);
+            midiStreamSynthesizer.NoteOff (9, midiNote + 3);
         if (Input.GetKeyDown(KeyCode.D))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 4, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 4, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.D))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 4);
+            midiStreamSynthesizer.NoteOff (9, midiNote + 4);
+
         if (Input.GetKeyDown(KeyCode.F))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 5, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, (int)KeyCode.F, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.F))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 5);
+
+
+            midiStreamSynthesizer.NoteOff (9, (int)KeyCode.F);
+
+
         if (Input.GetKeyDown(KeyCode.T))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 6, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 6, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.T))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 6);
+            midiStreamSynthesizer.NoteOff (9, midiNote + 6);
         if (Input.GetKeyDown(KeyCode.G))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 7, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 7, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.G))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 7);		
+            midiStreamSynthesizer.NoteOff (9, midiNote + 7);		
         if (Input.GetKeyDown(KeyCode.Y))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 8, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 8, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.Y))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 8);
+            midiStreamSynthesizer.NoteOff (9, midiNote + 8);
 
         if (Input.GetKeyDown(KeyCode.H))
-            midiStreamSynthesizer.NoteOn (1, (int)KeyCode.H, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, (int)KeyCode.H, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.H))
-            midiStreamSynthesizer.NoteOff (1, (int)KeyCode.H);
+            midiStreamSynthesizer.NoteOff (9, (int)KeyCode.H);
 
 
         if (Input.GetKeyDown(KeyCode.U))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 10, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 10, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.U))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 10);
+            midiStreamSynthesizer.NoteOff (9, midiNote + 10);
 
         if (Input.GetKeyDown(KeyCode.J))
-            midiStreamSynthesizer.NoteOn (1, (int)KeyCode.J, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, (int)KeyCode.J, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.J))
-            midiStreamSynthesizer.NoteOff (1, (int)KeyCode.J);		
+            midiStreamSynthesizer.NoteOff (9, (int)KeyCode.J);		
 
 
         if (Input.GetKeyDown(KeyCode.K))
-            midiStreamSynthesizer.NoteOn (1, midiNote + 12, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, midiNote + 12, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.K))
-            midiStreamSynthesizer.NoteOff (1, midiNote + 12);		
+            midiStreamSynthesizer.NoteOff (9, midiNote + 12);		
 		
 
 		
@@ -150,7 +159,7 @@ public class UnitySynthTest : MonoBehaviour
 	void OnGUI ()
 	{
 		// Make a background box
-		GUILayout.BeginArea (new Rect (Screen.width / 2 - 75, Screen.height / 2 - 50, 150, 300));
+		GUILayout.BeginArea (new Rect (0, Screen.height / 2 - 100, 300, 300));
 		
 		
 		if (GUILayout.Button ("Play Song")) {
@@ -228,7 +237,7 @@ public class UnitySynthTest : MonoBehaviour
 
 	public void MidiNoteOnHandler (int channel, int note, int velocity)
 	{
-		Debug.Log ("NoteOn: " + note.ToString () + " Velocity: " + velocity.ToString ());
+		Debug.Log ("NoteOn: " + note.ToString () + " Velocity: " + velocity.ToString () + " Channel " + channel.ToString());
         kyle.S.getNote(note);
 	}
 	
