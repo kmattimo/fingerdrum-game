@@ -68,10 +68,10 @@ namespace CSharpSynth.Sequencer
         }
         public string getProgramName(int channel)
         {
-            if (channel == 9)
+            //if (channel == 9)
                 return synth.SoundBank.getInstrument(currentPrograms[channel], true).Name;
-            else
-                return synth.SoundBank.getInstrument(currentPrograms[channel], false).Name;
+            //else
+                //return synth.SoundBank.getInstrument(currentPrograms[channel], false).Name;
         }
         public int getProgramIndex(int channel)
         {

@@ -41,9 +41,7 @@ public class UnitySynthTest : MonoBehaviour
 		
 		midiSequencer = new MidiSequencer (midiStreamSynthesizer);
 
-        //IT WAS YOU ALL ALONG. YOU BOOLEAN!!!!
 		midiSequencer.LoadMidi (midiFilePath, false);
-       // midiSequencer.LoadMidi(midiFilePath, true);
 
         //These will be fired by the midiSequencer when a song plays. Check the console for messages
         midiSequencer.NoteOnEvent += new MidiSequencer.NoteOnEventHandler (MidiNoteOnHandler);
@@ -110,8 +108,6 @@ public class UnitySynthTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
             midiStreamSynthesizer.NoteOn (9, (int)KeyCode.F, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.F))
-
-
             midiStreamSynthesizer.NoteOff (9, (int)KeyCode.F);
 
 
@@ -146,13 +142,18 @@ public class UnitySynthTest : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.K))
-            midiStreamSynthesizer.NoteOn (9, midiNote + 12, midiNoteVolume, midiInstrument);
+            midiStreamSynthesizer.NoteOn (9, (int)KeyCode.K, midiNoteVolume, midiInstrument);
         if (Input.GetKeyUp(KeyCode.K))
-            midiStreamSynthesizer.NoteOff (9, midiNote + 12);		
-		
+            midiStreamSynthesizer.NoteOff (9, (int)KeyCode.K);
 
-		
-	}
+        if (Input.GetKeyDown(KeyCode.L))
+            midiStreamSynthesizer.NoteOn(9, (int)KeyCode.L, midiNoteVolume, midiInstrument);
+        if (Input.GetKeyUp(KeyCode.L))
+            midiStreamSynthesizer.NoteOff(9, (int)KeyCode.L);
+
+
+
+    }
 	
 	// OnGUI is called for rendering and handling
 	// GUI events.
@@ -160,7 +161,16 @@ public class UnitySynthTest : MonoBehaviour
 	{
 		// Make a background box
 		GUILayout.BeginArea (new Rect (0, Screen.height / 2 - 100, 300, 300));
-		
+
+        if (kyle.S)
+        {
+            if (kyle.S.totalNotes == kyle.S.hitNotes)
+            {
+                GUILayout.Label("NICE JOB");
+                kyle.S.gameStarted = false;
+                midiSequencer.Stop(true);
+            }
+        }
 		
 		if (GUILayout.Button ("Play Song")) {
             //midiSequencer.Play ();
@@ -170,7 +180,7 @@ public class UnitySynthTest : MonoBehaviour
             kyle.S.gameStarted = false;
 			midiSequencer.Stop (true);
 		}		
-		GUILayout.Label("Play keys AWSEDFTGYHJK");
+		GUILayout.Label("Play keys F J K");
         GUILayout.Label("Missed Notes: " + kyle.S.missedNotes);
         GUILayout.Label(" Hit Notes " + kyle.S.hitNotes);
         GUILayout.Label("Extra Notes: " + kyle.S.extraNotes);

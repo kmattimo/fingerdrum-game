@@ -127,12 +127,4 @@ Telephone1/sfz/124/124/i/
 Helicopter/sfz/125/125/i/
 Applause/sfz/126/126/i/
 Gunshot/sfz/127/127/i/
-Standard/sfz/0/7/d/
-Room/sfz/8/15/d/
-Power/sfz/16/23/d/
-Electronic/sfz/24/24/d/
-TR-808/sfz/25/31/d/
-Jazz/sfz/32/39/d/
-Brush/sfz/40/47/d/
-Orchestra/sfz/48/55/d/
-test2/sfz/56/127/d/
+test2/sfz/0/127/d/

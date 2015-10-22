@@ -9,44 +9,30 @@
 ampeg_release=0.250
 
 <region>
-sample=kick.wav
-lokey=58
-hikey=58
-loop_mode=loop_continuous
-loop_start=32
-loop_end=7262
-tune=44
-pitch_keycenter=68
-
-<region>
-sample=kick.wav
+sample=CRASH60B.wav
 lokey=106
 hikey=106
-loop_mode=loop_continuous
-loop_start=2536
-loop_end=4021
-tune=13
-pitch_keycenter=95
-volume=-18.100
+tune=-12
+pitch_keycenter=127
 
 <region>
-sample=snare.wav
+sample=CLICK60.wav
+lokey=102
+hikey=102
+pitch_keycenter=102
+volume=-1
+
+<region>
+sample=SCRCH64.wav
 lokey=107
 hikey=107
-tune=-50
-pitch_keycenter=66
-volume=-18.100
+pitch_keycenter=108
+volume=-15.300
 
 <region>
 sample=kick.wav
 lokey=78
 hikey=78
-loop_mode=loop_continuous
-loop_start=2536
-loop_end=4021
-tune=13
-pitch_keycenter=95
-volume=-18.100
 
 <region>
 sample=BSLAP60.wav
