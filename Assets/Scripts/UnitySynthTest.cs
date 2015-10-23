@@ -197,7 +197,8 @@ public class UnitySynthTest : MonoBehaviour
         GUILayout.Label("Missed Notes: " + kyle.S.missedNotes);
         GUILayout.Label(" Hit Notes " + kyle.S.hitNotes);
 
-        GUILayout.Label("Extra Notes: " + kyle.S.extraNotes);
+        //TODO: broken
+        //GUILayout.Label("Extra Notes: " + kyle.S.extraNotes);
         GUILayout.Label("Loops: " + kyle.S.loopCount);
 
         //GUILayout.Box("Instrument: " + Mathf.Round(midiInstrument));
@@ -265,6 +266,10 @@ public class UnitySynthTest : MonoBehaviour
         {
             Debug.Log("NoteOn: " + note.ToString() + " Velocity: " + velocity.ToString() + " Channel " + channel.ToString());
             kyle.S.getNote(note);
+        }
+        else
+        {
+
         }
 	}
 	
