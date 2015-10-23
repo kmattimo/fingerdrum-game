@@ -17,8 +17,9 @@ public class kyle : MonoBehaviour {
     public Dictionary<int, int> loopNotes;
     public List<int> allNotesInLoop;
 
-    public static double keypressWindow = .3f;
-    public static double keypressPreWindow = .3f;
+    public static double keypressWindow = .4f;
+    public static double keypressPreWindow = .4f;
+    public static int metronomeKey = 126;
 
     public bool gameStarted = false;
 

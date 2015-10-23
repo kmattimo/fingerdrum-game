@@ -57,6 +57,18 @@ public class UnitySynthTest : MonoBehaviour
          MidiFile midi = midiSequencer.getMidiFile;
         List<MidiEvent> noteOns = midi.getAllMidiEventsofType( MidiHelper.MidiChannelEvent.Note_On, MidiHelper.MidiMetaEvent.None);
 
+        //we are cheating and making the metronome a note in the midi file that doesn't count
+        noteOns.RemoveAll(delegate (MidiEvent m)
+        //FUCK YEAH JUST LIKE JAVASCRIPT
+        {
+            if(m.parameter1 == kyle.metronomeKey) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
         //this is pretty bad OOP practice already tbh
         kyle.S.loopNotes = new Dictionary<int, int>();
         kyle.S.totalNotes = noteOns.Count;
@@ -72,6 +84,7 @@ public class UnitySynthTest : MonoBehaviour
         kyle.S.allNotesInLoop = new List<int>(kyle.S.loopNotes.Keys);
 
     }
+
 
     // Update is called every frame, if the
     // MonoBehaviour is enabled.
@@ -183,11 +196,12 @@ public class UnitySynthTest : MonoBehaviour
 		GUILayout.Label("Play keys F J K");
         GUILayout.Label("Missed Notes: " + kyle.S.missedNotes);
         GUILayout.Label(" Hit Notes " + kyle.S.hitNotes);
+
         GUILayout.Label("Extra Notes: " + kyle.S.extraNotes);
         GUILayout.Label("Loops: " + kyle.S.loopCount);
 
-        GUILayout.Box("Instrument: " + Mathf.Round(midiInstrument));
-		midiInstrument = (int)GUILayout.HorizontalSlider (midiInstrument, 0.0f, maxSliderValue);
+        //GUILayout.Box("Instrument: " + Mathf.Round(midiInstrument));
+		//midiInstrument = (int)GUILayout.HorizontalSlider (midiInstrument, 0.0f, maxSliderValue);
 		GUILayout.Box("Volume: " + Mathf.Round(midiNoteVolume));
 		midiNoteVolume = (int)GUILayout.HorizontalSlider (midiNoteVolume, 0.0f, maxSliderValue);
 		// End the Groups and Area	
@@ -247,8 +261,11 @@ public class UnitySynthTest : MonoBehaviour
 
 	public void MidiNoteOnHandler (int channel, int note, int velocity)
 	{
-		Debug.Log ("NoteOn: " + note.ToString () + " Velocity: " + velocity.ToString () + " Channel " + channel.ToString());
-        kyle.S.getNote(note);
+        if (note != kyle.metronomeKey)
+        {
+            Debug.Log("NoteOn: " + note.ToString() + " Velocity: " + velocity.ToString() + " Channel " + channel.ToString());
+            kyle.S.getNote(note);
+        }
 	}
 	
 	public void MidiNoteOffHandler (int channel, int note)

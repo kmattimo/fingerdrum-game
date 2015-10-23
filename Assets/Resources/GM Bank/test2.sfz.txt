@@ -23,6 +23,13 @@ pitch_keycenter=102
 volume=-1
 
 <region>
+sample=CLICK60.wav
+lokey=126
+hikey=126
+pitch_keycenter=126
+tune=52
+
+<region>
 sample=SCRCH64.wav
 lokey=107
 hikey=107
